@@ -1,1 +1,1 @@
-# The-Adventures-of-Blobby
+# Adventures-of-blobby
