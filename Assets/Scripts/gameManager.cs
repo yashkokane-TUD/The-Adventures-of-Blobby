@@ -17,7 +17,7 @@ public class gameManager : MonoBehaviour
     private HealthManager _healthManager;
     private static gameManager Instance;
     public GameObject introDialogue;
-
+    public closeDialogue cD;
     void Awake ()   
     {
         if (Instance == null)
@@ -33,7 +33,8 @@ public class gameManager : MonoBehaviour
     
     private void Start()
     {
-        if (!closeDialogue.instance.close)
+        cD = FindObjectOfType<closeDialogue>();
+        if (!cD.close)
         {
             introDialogue.SetActive(true);
         }

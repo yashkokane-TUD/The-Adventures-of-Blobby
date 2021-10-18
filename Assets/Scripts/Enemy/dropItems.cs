@@ -8,7 +8,7 @@ public class dropItems : MonoBehaviour
    // public GameObject item2;
 
     //public static GameObject enemy;
-    private Transform Epos;
+    public Transform Epos;
     //public GameObject enemy_bot;
     
     // Start is called before the first frame update
@@ -27,6 +27,7 @@ public class dropItems : MonoBehaviour
 
     public  void dropItemOnDeath()
     {
+        Debug.Log("drop");
             Instantiate(item1, Epos.position, Quaternion.identity);
     }
 }

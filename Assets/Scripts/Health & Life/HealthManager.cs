@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class HealthManager : MonoBehaviour
 {
-    public static int PlayerHP = 49;
+    public static int PlayerHP = 60;
     public int healthMax = 100;
     public HealthBar healthbar;
     public bool isDead = false;

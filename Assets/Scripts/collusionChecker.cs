@@ -6,8 +6,12 @@ using UnityEngine;
 public class collusionChecker : MonoBehaviour
 {
     private Enemy Enemy;
-   
 
+
+    private void Start()
+    {
+        Enemy = FindObjectOfType<Enemy>();
+    }
     /*private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Enemy_Bot")
