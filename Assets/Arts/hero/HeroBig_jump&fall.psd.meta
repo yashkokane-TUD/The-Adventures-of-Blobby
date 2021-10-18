@@ -61,7 +61,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 20
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -133,10 +133,10 @@ TextureImporter:
       name: HeroBig_jump&fall_0
       rect:
         serializedVersion: 2
-        x: 40
-        y: 916
-        width: 211
-        height: 376
+        x: 18
+        y: 485
+        width: 212
+        height: 377
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,10 +154,10 @@ TextureImporter:
       name: HeroBig_jump&fall_1
       rect:
         serializedVersion: 2
-        x: 463
-        y: 938
-        width: 204
-        height: 426
+        x: 409
+        y: 487
+        width: 203
+        height: 425
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,10 +175,10 @@ TextureImporter:
       name: HeroBig_jump&fall_2
       rect:
         serializedVersion: 2
-        x: 978
-        y: 966
-        width: 201
-        height: 472
+        x: 891
+        y: 491
+        width: 200
+        height: 473
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -196,10 +196,10 @@ TextureImporter:
       name: HeroBig_jump&fall_3
       rect:
         serializedVersion: 2
-        x: 30
-        y: 43
+        x: 32
+        y: 13
         width: 212
-        height: 413
+        height: 414
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -217,9 +217,9 @@ TextureImporter:
       name: HeroBig_jump&fall_4
       rect:
         serializedVersion: 2
-        x: 628
-        y: 23
-        width: 212
+        x: 479
+        y: 13
+        width: 211
         height: 376
       alignment: 0
       pivot: {x: 0, y: 0}

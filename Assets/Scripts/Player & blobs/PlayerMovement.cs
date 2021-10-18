@@ -13,10 +13,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Collider2D groundCheck_B;
     [SerializeField] private LayerMask groundLayers;
     [SerializeField] public bool canDash;
-    [SerializeField] public bool Dashing = false;
+    [SerializeField] public bool Dashing;
     
     public GameObject MapToggle;
-    
     public bool showMap;
     
     //knockback variables
@@ -26,7 +25,7 @@ public class PlayerMovement : MonoBehaviour
     public bool knockbackRight;
 
     [SerializeField] public bool canSJ;
-    public  static float moveDir;
+    public static float moveDir;
     private Rigidbody2D myRB;
     
     private SpriteRenderer mySR;
@@ -34,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     
     //public float V_speed;
     private bool canJump;
-    public Animator anim_Small;
+    [SerializeField] private Animator anim_Small;
     [SerializeField] private Animator anim_big;
     [SerializeField] private Animator anim_enemy1;
     
@@ -46,12 +45,12 @@ public class PlayerMovement : MonoBehaviour
     public static bool p_E2;
     
     //Dash Controls
-    public float dashSpeed;
-    private float dashTime;
-    public float startDashTime;
+    private float dashSpeed = 25;
+    private float dashTime =0;
+    private float startDashTime =0.6f;
     private float previousDirection = 1;
     
-    public int p;
+    //private int p;
     
     //super jump controls
     public bool _superJump;
@@ -59,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject lvl2Spawn;
     public GameObject lvl1Spawn;
-    public bool active = false;
+    public bool active;
     
     private Invisiblity invis;
     private potionCollection pC;
@@ -69,14 +68,8 @@ public class PlayerMovement : MonoBehaviour
     private HealthManager _hM;
     //public VectorValues StartPosition;
     //public VectorValues ReturnPosition;
-    public  BoxCollider2D myBox;
-    //public static BoxCollider2D myBoxB;
     
     //[SerializeField] SpriteRenderer[] HeroB;
-
-    //[SerializeField] GameObject player;
-
-    public GameObject[] players;
     // Start is called before the first frame update\
     private string sceneName;
     void Start()
@@ -85,14 +78,8 @@ public class PlayerMovement : MonoBehaviour
         /*Scene currentScene = SceneManager.GetActiveScene ();
         sceneName = currentScene.name;
         Debug.Log(sceneName);*/
-        myBox = GetComponent<BoxCollider2D>();
         anim_Small = GetComponentInChildren<Animator>();
         anim_enemy1 = GetComponentInChildren<Animator>();
-        /*players = GameObject.FindGameObjectsWithTag("Player");
-        if (players.Length > 1)
-        {
-            Destroy(players[0]);
-        }*/
         myRB = GetComponent<Rigidbody2D>();
         mySR = GetComponentInChildren<SpriteRenderer>();
         dashTime = startDashTime;   //Dash timer
@@ -283,6 +270,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (context.started)
         {
+            
             if (p_level1 || p_level2)
             {
                if (canDash && !Dashing && moveDir!= 0)
@@ -292,9 +280,11 @@ public class PlayerMovement : MonoBehaviour
                         dashTime = startDashTime;
                         myRB.velocity = Vector2.zero;
                         Dashing = false;
+                        Debug.Log("no dash");
                     }
                     else
                     {
+                        Debug.Log("dash");
                         Dashing = false;
                         dashTime -= Time.deltaTime;
                         if (myRB.velocity.x < 0)
@@ -369,43 +359,29 @@ public class PlayerMovement : MonoBehaviour
            chargeUp = jumpForce * 0.08f;
            if (p_level1)
            {
-               p = 1;
+               if (canJump)
+               {
+                   myRB.AddForce(transform.up * jumpForce * chargeUp , ForceMode2D.Impulse );
+                   canJump = false;
+                   anim_Small.Play("Hero1_jump");
+                   chargeUp = 0f;
+               }
+               else
+               {
+                   anim_Small.Play("Hero1_idle");
+               }
            }
            else if (p_level2)
            {
-               p = 2;
-           }
-           switch (p)
-           {
-               case 1:
+               if (canJump)
                {
-                   if (canJump)
-                   {
-                       myRB.AddForce(transform.up * jumpForce * chargeUp , ForceMode2D.Impulse );
-                       canJump = false;
-                       anim_Small.Play("Hero1_jump");
-                       chargeUp = 0f;
-                   }
-                   else
-                   {
-                       anim_Small.Play("Hero1_idle");
-                   }
-                   break;
+                   myRB.AddForce(transform.up * jumpForce * chargeUp, ForceMode2D.Impulse);
+                   canJump = false;
+                   //anim_Small.Play("Hero2_jump");   
                }
-               case 2:
+               else
                {
-                   if (canJump)
-                   {
-                       myRB.AddForce(transform.up * jumpForce * chargeUp, ForceMode2D.Impulse);
-                       canJump = false;
-                       //anim_Small.Play("Hero2_jump");   
-                   }
-                   else
-                   {
-                       anim_Small.Play("Hero2_Idle");
-                   }
-                   break;
-                    
+                   anim_Small.Play("Hero2_Idle");
                }
            }
            Debug.Log(chargeUp);

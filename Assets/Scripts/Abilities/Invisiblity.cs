@@ -18,9 +18,11 @@ public class Invisiblity : MonoBehaviour
     
     //public GameObject Timetext;
     public SpriteRenderer heroS;
+    public SpriteRenderer heroB;
     public bool canInvis;
     public bool isInvis;
     private Color colS;
+    private Color colB;
     //[SerializeField] GameObject text;
     //[SerializeField] SpriteRenderer[] HeroB;
     //[SerializeField] Color[] colorB;
@@ -64,15 +66,11 @@ public class Invisiblity : MonoBehaviour
             else if (PlayerMovement.p_level2)
             {
                 gameObject.tag = "invisHero";
-                /*for (int i = 0; i < HeroB.Length; i++)
-                {
-                    colorB[i].a = 0.5f;
-                    HeroB[i].color = colorB[i];
-                }
-                colorB[1].a = 0.3f;
-                HeroB[1].color = colorB[1];
-                colorB[5].a = 0.3f;
-                HeroB[5].color = colorB[5];*/
+                colB.a = 0.5f;
+                heroB.color = colB;
+                isInvis = true;
+                SetTimer();
+                StartCoroutine(MyMethod());
                 SetTimer();
                 StartCoroutine(MyMethod());
             }
@@ -95,11 +93,8 @@ public class Invisiblity : MonoBehaviour
             }
             else if (PlayerMovement.p_level2)
             {
-                /*for (int i = 0; i < HeroB.Length; i++)
-                {
-                    colorB[i].a = 1f;
-                    HeroB[i].color = colorB[i];
-                }*/
+                colB.a = 1f;
+                heroB.color = colB;
                 isInvis = false;
                 gameObject.tag = "Player";
             }

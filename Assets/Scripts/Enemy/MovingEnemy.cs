@@ -22,7 +22,7 @@ public class MovingEnemy : MonoBehaviour
     //invoke to check Player dash ability access
     public PlayerMovement Dash; 
     
-    
+    private dropItems DItems;
     private SpriteRenderer mySR;    //Enemy sprite access
     //player movement script Dash ability call
     
@@ -37,6 +37,8 @@ public class MovingEnemy : MonoBehaviour
     {
         mySR = GetComponentInChildren<SpriteRenderer>();
         currentPosition = points[pointSelect];
+        
+        DItems = FindObjectOfType<dropItems>();
     }
 
     // Update is called once per frame
@@ -75,6 +77,7 @@ public class MovingEnemy : MonoBehaviour
                 playCutScene();//destroy enemy object
                 Destroy(roof);
                 _SJAbility.SetActive(true);
+                DItems.dropItemOnDeath();
             }
         }
         else if (other.gameObject.tag == "HeroBullet")
@@ -83,9 +86,11 @@ public class MovingEnemy : MonoBehaviour
     
             if (health == 0)
             {
-                playCutScene();//destroy enemy object
                 Destroy(roof);
                 _SJAbility.SetActive(true);
+                DItems.dropItemOnDeath();
+                playCutScene();//destroy enemy object
+                
             }
         }
     }
