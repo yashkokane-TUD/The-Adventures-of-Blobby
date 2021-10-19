@@ -67,56 +67,45 @@ public class MovingEnemy : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Player" && Dash.Dashing == true)
+        if (other.gameObject.tag == "Player" && Dash.Dashing || other.gameObject.tag == "Bullet")
         {
             Debug.Log(health);
             health = health - 1;
     
             if (health == 0)
             {
-                playCutScene();//destroy enemy object
+                //playCutScene();//destroy enemy object
                 Destroy(roof);
                 _SJAbility.SetActive(true);
                 DItems.dropItemOnDeath();
             }
         }
-        else if (other.gameObject.tag == "HeroBullet")
-        {
-            health = health - 1;
-    
-            if (health == 0)
-            {
-                Destroy(roof);
-                _SJAbility.SetActive(true);
-                DItems.dropItemOnDeath();
-                playCutScene();//destroy enemy object
-                
-            }
-        }
     }
-    public void playCutScene()
+    /*public void playCutScene()
     {
-        Cutscene.enabled = true;
-        
-        MainCam.enabled = false;
-        /*anim.Play("buff view");*/
-        StartCoroutine(endCutScene());
-    }
-    IEnumerator endCutScene()
-    {
-        yield return new WaitForSeconds(6f);
-        /*Debug.Log("end cut");*/
-        MainCam.enabled = true;
-        Cutscene.enabled = false;
+        //yield return new WaitForSeconds(6f);
+        /*Debug.Log("end cut");#1#
+        //StartCoroutine(endCutScene());
+        /*Cutscene.enabled = true;
+        MainCam.enabled = false;#1#
+        MainCam.Priority = 8;
+        Cutscene.Priority = 9;
+        anim.Play("buff view");
+        MainCam.Priority = 9;
+        Cutscene.Priority = 8;
+        /*MainCam.enabled = true;
+        Cutscene.enabled = false;#1#
         Destroy(gameObject); 
         
-
     }
-
-   
-
-
-
-
+    /*IEnumerator endCutScene()
+    {
+        
+        Cutscene.enabled = true;
+        MainCam.enabled = false;
+        MainCam.Priority = 8;
+        Cutscene.Priority = 9;
+        anim.Play("buff view");
+    }#1#*/
 
 }

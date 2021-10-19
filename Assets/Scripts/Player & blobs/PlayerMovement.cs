@@ -12,11 +12,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Collider2D groundCheck;
     [SerializeField] private Collider2D groundCheck_B;
     [SerializeField] private LayerMask groundLayers;
+    
     [SerializeField] public bool canDash;
     [SerializeField] public bool Dashing;
     
     public GameObject MapToggle;
-    public bool showMap;
+    private bool showMap;
     
     //knockback variables
     public float knockback;
@@ -32,10 +33,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]private SpriteRenderer mySRE;
     
     //public float V_speed;
-    private bool canJump;
+    public bool canJump;
     [SerializeField] private Animator anim_Small;
     [SerializeField] private Animator anim_big;
     [SerializeField] private Animator anim_enemy1;
+    [SerializeField] private Animator anim_enemy2;
     
     //Transform variables
     //player evolution
@@ -49,15 +51,11 @@ public class PlayerMovement : MonoBehaviour
     private float dashTime =0;
     private float startDashTime =0.6f;
     private float previousDirection = 1;
-    
-    //private int p;
-    
+
     //super jump controls
     public bool _superJump;
-    public float chargeUp;
+    private float chargeUp;
 
-    public GameObject lvl2Spawn;
-    public GameObject lvl1Spawn;
     public bool active;
     
     private Invisiblity invis;
@@ -66,11 +64,7 @@ public class PlayerMovement : MonoBehaviour
     private ShootingBullet sB;
     private gameManager GameManager;
     private HealthManager _hM;
-    //public VectorValues StartPosition;
-    //public VectorValues ReturnPosition;
-    
-    //[SerializeField] SpriteRenderer[] HeroB;
-    // Start is called before the first frame update\
+   
     private string sceneName;
     void Start()
     {
@@ -80,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log(sceneName);*/
         anim_Small = GetComponentInChildren<Animator>();
         anim_enemy1 = GetComponentInChildren<Animator>();
+        anim_enemy2 = GetComponentInChildren<Animator>();
         myRB = GetComponent<Rigidbody2D>();
         mySR = GetComponentInChildren<SpriteRenderer>();
         dashTime = startDashTime;   //Dash timer
@@ -102,6 +97,11 @@ public class PlayerMovement : MonoBehaviour
             myRB.AddForce(moveAxis * moveForce, ForceMode2D.Force);
         }
 
+        if (tM.HeroBig)
+        {
+            p_level1 = false;
+            p_level2 = true;
+        }
         if (p_level1)
         {
             canJump = groundCheck.IsTouchingLayers(groundLayers);
@@ -121,13 +121,14 @@ public class PlayerMovement : MonoBehaviour
             canJump = groundCheck_B.IsTouchingLayers(groundLayers);
             if (!canJump)
             {
-                //Debug.Log("hit2");
-                anim_big.SetBool("isGrounded",false);
+                //Debug.Log("hit1");
+                anim_big.SetBool("isGrounded", false);
             }
             else
             {
                 anim_big.SetBool("isGrounded", true);
             }
+
         }
         if (myRB.velocity.x != 0)
         {
@@ -206,11 +207,13 @@ public class PlayerMovement : MonoBehaviour
                     {
                         mySRE.flipX = false;
                         anim_enemy1.SetBool("IsMoving",true);
+                        Debug.Log("hit");
                     }
                     else if (moveDir < 0)
                     {
                         mySRE.flipX = true;
                         anim_enemy1.SetBool("IsMoving",true);
+                        Debug.Log("hit1");
                     }
                     else
                     {
@@ -222,14 +225,17 @@ public class PlayerMovement : MonoBehaviour
                     if (moveDir >0)
                     {
                         mySR.flipX = false;
+                        anim_enemy2.SetBool("IsMoving",true);
                     }
                     else if (moveDir < 0)
                     {
                         mySR.flipX = true;
+                        anim_enemy2.SetBool("IsMoving",true);
+                        
                     }
                     else
                     {
-                        
+                        anim_enemy2.SetBool("IsMoving",false);
                     }
                 }  
             }
@@ -334,12 +340,12 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            if (p_level1 == true)
+            if (p_level1)
             {
                 anim_Small.SetBool("isDashing",false);
                 anim_Small.SetBool("IsIdle",true);
             }
-            else if (p_level2 == true)
+            else if (p_level2)
             {
                 anim_big.SetBool("isDashing",false);
                 anim_big.SetBool("IsIdle",true);

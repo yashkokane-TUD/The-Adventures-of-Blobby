@@ -21,6 +21,7 @@ TagManager:
   - Enemy_Bot
   - BossStartPos
   - BossEndPos
+  - AbilityEnemy
   layers:
   - Default
   - TransparentFX

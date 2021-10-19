@@ -45,8 +45,8 @@ public class Breakable_floor : MonoBehaviour
         particles.Play();*/
         
         yield return new WaitForSeconds(smoke.main.startLifetime.constantMax);
-        mySR.enabled = false;
-        bc.enabled = false;
+        //mySR.enabled = false;
+        //bc.enabled = false;
         
         Destroy(gameObject);
     }

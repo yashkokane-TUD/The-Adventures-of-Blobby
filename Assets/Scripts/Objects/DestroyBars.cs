@@ -1,25 +1,25 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DestroyBars : MonoBehaviour
 {
-    public GameObject DestBars;
-    
-    public void destroyPrison()
-   {
-       //Debug.Log("hit");
-       GameObject destructable = (GameObject) Instantiate(DestBars);
-       //destructable.transform.position = Bars.transform.position;
-       Destroy(gameObject);
-       
-       //StartCoroutine(MyMethod()); 
-   }
-    
-    /*
-    IEnumerator MyMethod() 
+    public SpriteRenderer DestBars;
+
+    public Sprite broken;
+
+    private void Start()
     {
-        yield return new WaitForSeconds(2);
-        Destroy(DestBars);
-    }*/
+        DestBars = GetComponentInChildren<SpriteRenderer>();
+    }
+    public void destroyPrison()
+    {
+
+        DestBars.sprite = broken;
+   
+       //GameObject destructable = (GameObject) Instantiate(DestBars);
+       //destructable.transform.position = Bars.transform.position;
+     
+   }
 }

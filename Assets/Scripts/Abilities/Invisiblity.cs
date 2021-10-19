@@ -44,7 +44,7 @@ public class Invisiblity : MonoBehaviour
     private void Update()
     {
         PotionCheck();
-        if (isInvis == true)
+        if (isInvis)
         {
             startTimer();
         }
@@ -71,8 +71,6 @@ public class Invisiblity : MonoBehaviour
                 isInvis = true;
                 SetTimer();
                 StartCoroutine(MyMethod());
-                SetTimer();
-                StartCoroutine(MyMethod());
             }
         }
         else if (pM.active == false)
@@ -89,7 +87,6 @@ public class Invisiblity : MonoBehaviour
                 heroS.color = colS;
                 isInvis = false;
                 gameObject.tag = "Player";
-                //Debug.Log("invis off"); 
             }
             else if (PlayerMovement.p_level2)
             {
@@ -118,23 +115,18 @@ public class Invisiblity : MonoBehaviour
     }
 
     public void startTimer()
+     {
+         if (timer >= 0)
          {
-             
-             if (timer >= 0)
-             {
-                 //text.SetActive(true);
-                 timer -= Time.deltaTime;
-                 //theText.text = "Time: " + timer.ToString("F0");
-             }
-             else if (timer <= 0)
-             {
-                 //text.SetActive(false);
-                 isInvis = false;
-                 canInvis = false;
-                 heroInvis();
-                 //pM.active = false;
-             }
+             timer -= Time.deltaTime;
          }
+         else if (timer <= 0)
+         {
+             isInvis = false;
+             canInvis = false;
+             heroInvis();
+         }
+     }
     
     
     IEnumerator MyMethod() {

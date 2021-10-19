@@ -16,6 +16,11 @@ public class TransformationManager : MonoBehaviour
     public bool canTransform;
     public static int TransformID = 0;
     public bool show;
+    private bool transformed;
+
+    public bool HeroBig;
+    [SerializeField] float startTime = 10;
+    public float timer;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,11 +40,16 @@ public class TransformationManager : MonoBehaviour
         {
             canTransform = true;
         }
+
+        if (transformed)
+        {
+            startTimer();
+        }
     }
 
     public void transformCheck()
     {
-        if (!canTransform)
+        if (!canTransform && !transformed)
         {
             HSmall.SetActive(true);
             HBig.SetActive(false);
@@ -97,13 +107,14 @@ public class TransformationManager : MonoBehaviour
                     PlayerMovement.p_level2 = true;
                     PlayerMovement.p_E1 = false;
                     PlayerMovement.p_E2 = false;
+                    HeroBig = true;
                 }
                 //Debug.Log("big");
                 //pM.sizeupdate();
                 
                 break;
             case 3:
-                
+                transformed = true;
                 //PotionUsage(25);
                 HSmall.SetActive(false);
                 HBig.SetActive(false);
@@ -118,13 +129,11 @@ public class TransformationManager : MonoBehaviour
                 PlayerMovement.p_E1 = true;
                 PlayerMovement.p_E2 = false;
                 potionCollection.RReduceCount();
-                
-                
-                /*pM.canDash = false;
-                pM.canJump = false;
-                pM._superJump = false;*/
+                timer = 10;
+                SetTimer();
                 break;
             case 4:
+                transformed = true;
                 //Debug.Log("E2");
                 //PotionUsage(50);
                 H_E1.SetActive(true);
@@ -139,9 +148,38 @@ public class TransformationManager : MonoBehaviour
                 PlayerMovement.p_E1 = false;
                 PlayerMovement.p_E2 = true;
                 potionCollection.RReduceCount();
+                timer = 5;
+                SetTimer();
                 break;
         }
     }
-
+    public void startTimer()
+    {
+        if (timer >= 0)
+        {
+            timer -= Time.deltaTime;
+        }
+        else if (timer <= 0)
+        {
+            if (HealthManager.PlayerHP < 50)
+            {
+                TransformID = 1;
+                TransformationData();
+                transformed = false;
+            }
+            else if (HealthManager.PlayerHP > 50)
+            {
+                TransformID = 2;
+                TransformationData();
+                transformed = false;
+            }
+            
+        }
+    }
+   
+    public void SetTimer()
+    {
+        timer = startTime;
+    }
    
 }
