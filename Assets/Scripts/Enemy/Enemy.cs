@@ -26,7 +26,7 @@ public class Enemy : MonoBehaviour
     {
         mySR = GetComponentInChildren<SpriteRenderer>();
         currentPosition = points[pointSelect];
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         _healthManager = FindObjectOfType<HealthManager>();
         DItems = FindObjectOfType<dropItems>();
     }
@@ -54,12 +54,14 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            EnemyHealth();
-            anim.SetBool("canAttack",true);
-           // _healthManager.HurtPlayer();
-            anim.SetBool("canAttack",false);
+            anim.SetBool("Player",true);
             /*Debug.Log(("Dash"));*/
         }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        anim.SetBool("Player",false);
     }
 
     public void EnemyHealth()
