@@ -15,9 +15,18 @@ public class gameManager : MonoBehaviour
     
     private gameManager Gm;
     private HealthManager _healthManager;
+    private LifeManager _lifeManager;
     private static gameManager Instance;
     public GameObject introDialogue;
     public closeDialogue cD;
+
+    private SaveManager _saveManager;
+    public GameObject player;
+    public int lives;
+    public Vector3 resPt;
+    private PlayerMovement pM;
+    
+    public GameObject CurrentCheckpoint;
     void Awake ()   
     {
         if (Instance == null)
@@ -31,16 +40,36 @@ public class gameManager : MonoBehaviour
         }
     }
     
+    public void RespawnPlayer()
+    {
+        pM.transform.position = CurrentCheckpoint.transform.position;
+        _healthManager.ResetHealth();
+        //SaveManager.instance.Save();
+    }
     private void Start()
     {
+        pM = FindObjectOfType<PlayerMovement>();
+        _healthManager = FindObjectOfType<HealthManager>();
+        _lifeManager = FindObjectOfType<LifeManager>();
         cD = FindObjectOfType<closeDialogue>();
+        _saveManager = FindObjectOfType<SaveManager>();
         if (!cD.close)
         {
             introDialogue.SetActive(true);
         }
+        SaveManager.instance.Load();
+        //resPt = player.transform.position;
+        if (SaveManager.instance.hasloaded)
+        {
+            resPt = SaveManager.instance.activeSave.resPos;
+            SaveManager.instance.transform.position = resPt;
+            lives = SaveManager.instance.activeSave.lives;
+        }
+        else
+        {
+            SaveManager.instance.activeSave.lives = lives;
+        }
         
-        _healthManager = FindObjectOfType<HealthManager>();
-        //Gm = FindObjectOfType<gameManager>();
         DontDestroyOnLoad(gameObject);
     }
 
@@ -89,6 +118,13 @@ public class gameManager : MonoBehaviour
      }
      public void QuitGame()
      {
+         SaveManager.instance.activeSave.resPos = transform.position;
+         SaveManager.instance.activeSave.resPos = transform.position;
+         SaveManager.instance.activeSave.lives = _lifeManager.LifeCounter;
+         SaveManager.instance.activeSave.HP = HealthManager.PlayerHP;
+         SaveManager.instance.activeSave.potionsB = potionCollection.potion_B_Count;
+         SaveManager.instance.activeSave.potionsR = potionCollection.potion_R_Count;
+         SaveManager.instance.Save();
          SceneManager.LoadScene("Menu_Scene");
      }
 

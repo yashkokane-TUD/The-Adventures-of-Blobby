@@ -33,6 +33,12 @@ public class potionCollection : MonoBehaviour
         //PM_B = FindObjectOfType<PotionBManager>();
         pM = FindObjectOfType<PlayerMovement>();
         PotionBManager.SetPotionB(potion_B_Count);
+        if (SaveManager.instance.hasloaded)
+        {
+            potion_B_Count = SaveManager.instance.activeSave.potionsB;
+            potion_R_Count = SaveManager.instance.activeSave.potionsR;
+        }
+        
     }
   
     
@@ -55,6 +61,7 @@ public class potionCollection : MonoBehaviour
         {
             potion_B_Count = maxBpotions;
         }
+        
         PotionBManager.SetPotionB(potion_B_Count);
     }
 

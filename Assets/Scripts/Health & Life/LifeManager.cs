@@ -9,7 +9,7 @@ public class LifeManager : MonoBehaviour
 {
     public int StartLives;
 
-    private int LifeCounter;
+    public int LifeCounter;
 
     private TMP_Text theText;
     
@@ -38,10 +38,12 @@ public class LifeManager : MonoBehaviour
     {
 
         LifeCounter++;
+        SaveManager.instance.activeSave.lives = LifeCounter;
     }
 
     public void TakeLife()
     {
         LifeCounter--;
+        SaveManager.instance.activeSave.lives = LifeCounter;
     }
 }

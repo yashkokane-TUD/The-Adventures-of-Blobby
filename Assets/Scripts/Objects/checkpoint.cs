@@ -5,13 +5,15 @@ using UnityEngine;
 
 public class checkpoint : MonoBehaviour
 {
-    private levelManager LevelManager;
+    //private levelManager LevelManager;
+    private gameManager gM;
     
     public int playerHPatCheck;
     // Start is called before the first frame update
     void Start()
     {
-        LevelManager = FindObjectOfType<levelManager>();
+        gM = FindObjectOfType<gameManager>();
+        //LevelManager = FindObjectOfType<levelManager>();
     }
 
     // Update is called once per frame
@@ -24,9 +26,11 @@ public class checkpoint : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            LevelManager.CurrentCheckpoint = gameObject;
+            gM.CurrentCheckpoint = gameObject;
             playerHPatCheck = HealthManager.PlayerHP;
             Debug.Log(playerHPatCheck);
+            /*SaveManager.instance.activeSave.resPos = transform.position;
+            SaveManager.instance.Save();*/
         }
         
     }

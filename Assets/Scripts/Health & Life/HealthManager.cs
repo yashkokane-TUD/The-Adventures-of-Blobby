@@ -12,7 +12,7 @@ public class HealthManager : MonoBehaviour
 
     public GameObject HealthBar;
  
-    private levelManager LevelManager;
+   // private gameManager LevelManager;
     private LifeManager lifeSystem;
     private potionCollection pC;
     private gameManager gM;
@@ -29,10 +29,15 @@ public class HealthManager : MonoBehaviour
         healthbar = FindObjectOfType<HealthBar>();
         healthbar.SetMaxHealth(); //sets the max possible health in the HUD
         lifeSystem = FindObjectOfType<LifeManager>();
-        LevelManager = FindObjectOfType<levelManager>();
+        //LevelManager = FindObjectOfType<levelManager>();
         gM = FindObjectOfType<gameManager>();
         pC = FindObjectOfType<potionCollection>();
         Cp = FindObjectOfType<checkpoint>();
+        if (SaveManager.instance.hasloaded)
+        {
+            PlayerHP = SaveManager.instance.activeSave.HP;
+        }
+        
         healthbar.SetHealth(PlayerHP);
     }
     
@@ -51,7 +56,7 @@ public class HealthManager : MonoBehaviour
             PlayerHP = 0;
             //anim.SetBool("Dying", true);
             //anim.SetBool("Dying", false);
-            LevelManager.RespawnPlayer();
+            gM.RespawnPlayer();
             lifeSystem.TakeLife();
             isDead = true;
             
