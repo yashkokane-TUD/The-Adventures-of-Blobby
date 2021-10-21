@@ -239,7 +239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item1: {fileID: 2445334170380496646, guid: 5d8f3e4cd991ad849946e73c141dd87e, type: 3}
-  Epos: {fileID: 3057911920097318772}
+  Epos: {fileID: 0}
 --- !u!1 &3057911920219101035
 GameObject:
   m_ObjectHideFlags: 0

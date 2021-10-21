@@ -5,7 +5,7 @@ using UnityEngine;
 public class dropItems : MonoBehaviour
 {
     public  GameObject item1;
-   // public GameObject item2;
+    // public GameObject item2;
 
     //public static GameObject enemy;
     public Transform Epos;
@@ -15,19 +15,16 @@ public class dropItems : MonoBehaviour
     void Start()
     {
         Epos = GetComponent<Transform>();
-        //item1.transform.position = enemy.transform.position;
-        //item2.transform.position = enemy_bot.transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        item1.transform.position = Epos.position;
     }
 
     public  void dropItemOnDeath()
     {
         Debug.Log("drop");
-            Instantiate(item1, Epos.position, Quaternion.identity);
+        Instantiate(item1, item1.transform.position, Quaternion.identity);
     }
 }
