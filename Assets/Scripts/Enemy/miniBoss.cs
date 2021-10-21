@@ -36,12 +36,12 @@ public class miniBoss : MonoBehaviour
         if (_enemy.transform.position == currentPosition.position)
         {
             pointSelect++;
-            sR.flipX = true;
+            //sR.flipX = false;
             transform.Rotate(new Vector3(0, 180, 0));
             if (pointSelect == points.Length)
             {
                 pointSelect = 0;
-                sR.flipX = false;
+                sR.flipX = true;
                 transform.Rotate(new Vector3(0, 0, 0));
             }
             currentPosition = points[pointSelect];
@@ -61,7 +61,7 @@ public class miniBoss : MonoBehaviour
             enemyHealth -= 2;
             setHealth(enemyHealth);
         }
-        if (other.gameObject.tag == "Player" && Dash.Dashing == true)
+        if (other.gameObject.tag == "Player" && Dash.Dashing)
         {
             enemyHealth -= 1;
             setHealth(enemyHealth);
@@ -78,9 +78,17 @@ public class miniBoss : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            transform.Rotate(new Vector3(0, 180, 0));
-            sR.color = Color.red;
-           // speed = 3f;
+            
+            speed = 6f;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            
+            speed = 3f;
         }
     }
 }

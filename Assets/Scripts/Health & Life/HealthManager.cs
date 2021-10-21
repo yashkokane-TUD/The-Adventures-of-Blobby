@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class HealthManager : MonoBehaviour
 {
-    public static int PlayerHP = 30;
+    public static int PlayerHP = 12;
     public int healthMax = 100;
     public HealthBar healthbar;
     public bool isDead = false;
@@ -49,13 +49,16 @@ public class HealthManager : MonoBehaviour
         if (PlayerHP <= 0 && !isDead)
         {
             PlayerHP = 0;
-            gM.PauseGame();
-            anim.SetBool("Dying", true);
-            anim.SetBool("Dying", false);
+            //anim.SetBool("Dying", true);
+            //anim.SetBool("Dying", false);
             LevelManager.RespawnPlayer();
             lifeSystem.TakeLife();
             isDead = true;
             
+        }
+        else
+        {
+            isDead = false;
         }
         //StatsStorage.HP = PlayerHP;
     }
@@ -84,9 +87,11 @@ public class HealthManager : MonoBehaviour
 
     public void ResetHealth()
     {
+        
         PlayerHP = Cp.playerHPatCheck;
         PlayerHP = PlayerHP + 10;
         healthbar.SetHealth(PlayerHP);
+        isDead = false;
         //PlayerPrefs.SetInt("PlayerHP", PlayerHP + 20);
     }
 
