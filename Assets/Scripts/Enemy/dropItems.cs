@@ -8,23 +8,23 @@ public class dropItems : MonoBehaviour
     // public GameObject item2;
 
     //public static GameObject enemy;
-    public Transform Epos;
+    //public Transform Epos;
     //public GameObject enemy_bot;
     
     // Start is called before the first frame update
     void Start()
     {
-        Epos = GetComponent<Transform>();
+        //Epos = GetComponent<Transform>();
     }
 
     private void Update()
     {
-        item1.transform.position = Epos.position;
+        //item1.transform.position = Epos.position;
     }
 
     public  void dropItemOnDeath()
     {
         Debug.Log("drop");
-        Instantiate(item1, item1.transform.position, Quaternion.identity);
+        item1.SetActive(true);
     }
 }

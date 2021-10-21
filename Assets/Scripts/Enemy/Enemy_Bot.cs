@@ -18,6 +18,7 @@ public class Enemy_Bot : MonoBehaviour
     
     private SpriteRenderer mySR;
     private PlayerMovement pM;
+    public  GameObject item1;
     
     // Start is called before the first frame update
     void Start()
@@ -63,7 +64,8 @@ public class Enemy_Bot : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bullet")
         {
-            DItems.dropItemOnDeath();
+            //DItems.dropItemOnDeath();
+            item1.SetActive(true);
             Destroy(gameObject);
         }
         /*if (collision.gameObject.tag == "Player" &&  pM.Dashing == true);

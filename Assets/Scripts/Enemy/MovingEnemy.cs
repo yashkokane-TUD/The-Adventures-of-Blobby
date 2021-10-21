@@ -22,7 +22,7 @@ public class MovingEnemy : MonoBehaviour
     //invoke to check Player dash ability access
     public PlayerMovement Dash; 
     
-    private dropItems DItems;
+    private DropMultipleItems DItems;
     private SpriteRenderer mySR;    //Enemy sprite access
     //player movement script Dash ability call
     
@@ -38,7 +38,7 @@ public class MovingEnemy : MonoBehaviour
         mySR = GetComponentInChildren<SpriteRenderer>();
         currentPosition = points[pointSelect];
         
-        DItems = FindObjectOfType<dropItems>();
+        DItems = FindObjectOfType<DropMultipleItems>();
     }
 
     // Update is called once per frame
@@ -77,7 +77,7 @@ public class MovingEnemy : MonoBehaviour
                 //playCutScene();//destroy enemy object
                 Destroy(roof);
                 _SJAbility.SetActive(true);
-                DItems.dropItemOnDeath();
+                DItems.dropItemOnDeath2();
             }
         }
     }

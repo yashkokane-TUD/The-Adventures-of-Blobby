@@ -115,7 +115,6 @@ GameObject:
   - component: {fileID: 3057911920097318775}
   - component: {fileID: 6495930100876389265}
   - component: {fileID: 6495930100876389259}
-  - component: {fileID: 6495930100876389258}
   m_Layer: 0
   m_Name: Enemy bot
   m_TagString: Enemy_Bot
@@ -203,7 +202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72302ec398d00754490d4f45cdfa5af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 6312889739516379398, guid: b3f8a40be7416af4ebde12415146a184, type: 3}
   _enemyBot: {fileID: 3057911920097318776}
   moveSpeed: 3
   pointSelect: 0
@@ -211,6 +210,7 @@ MonoBehaviour:
   points:
   - {fileID: 3057911921716931308}
   - {fileID: 3057911920219101034}
+  item1: {fileID: 0}
 --- !u!114 &6495930100876389259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,20 +226,6 @@ MonoBehaviour:
   _healthManager: {fileID: 0}
   _playerMovement: {fileID: 0}
   HurtValue: 2
---- !u!114 &6495930100876389258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3057911920097318776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cd73dcfcafff354da0be6458821d364, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item1: {fileID: 2445334170380496646, guid: 5d8f3e4cd991ad849946e73c141dd87e, type: 3}
-  Epos: {fileID: 0}
 --- !u!1 &3057911920219101035
 GameObject:
   m_ObjectHideFlags: 0

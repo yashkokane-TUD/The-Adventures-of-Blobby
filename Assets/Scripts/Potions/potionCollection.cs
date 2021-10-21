@@ -39,7 +39,7 @@ public class potionCollection : MonoBehaviour
     // Update is called once per frame
     public  static void UpdateRedCount()
     {
-        potion_R_Count = potion_R_Count + 10;
+        potion_R_Count = potion_R_Count + 20;
         if (potion_R_Count >= maxRpotions)
         {
             potion_R_Count = maxRpotions;
