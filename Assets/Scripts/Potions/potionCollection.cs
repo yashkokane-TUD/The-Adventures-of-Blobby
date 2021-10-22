@@ -8,20 +8,12 @@ public class potionCollection : MonoBehaviour
 {
      public static int potion_B_Count;
      public static int potion_R_Count;
-    
-    //public int potion_G_Count;
-
+     
     public static int maxRpotions = 100;
-    //public int maxGpotions = 100;
     private static int maxBpotions = 100;
-    
 
-    //private PotionRManager PM_R;
-    //private static PotionBManager PM_B;
-    //private PotionGManager PM_G;
     private PlayerMovement pM;
     
-    //private int BluePotionCount;
     void Awake()    
     {
         DontDestroyOnLoad(gameObject);
@@ -29,16 +21,26 @@ public class potionCollection : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //PM_R = FindObjectOfType<PotionRManager>();
-        //PM_B = FindObjectOfType<PotionBManager>();
         pM = FindObjectOfType<PlayerMovement>();
-        PotionBManager.SetPotionB(potion_B_Count);
-        if (SaveManager.instance.hasloaded)
+        /*potion_B_Count = 0;
+        potion_R_Count = 0;
+        PotionRManager.SetPotionR(potion_R_Count);
+        PotionBManager.SetPotionB(potion_B_Count);*/
+        if (MainMenu.LoadedGame = true)
         {
-            potion_B_Count = SaveManager.instance.activeSave.potionsB;
-            potion_R_Count = SaveManager.instance.activeSave.potionsR;
+            if (SaveManager.instance.hasloaded)
+            {
+                potion_B_Count = SaveManager.instance.activeSave.potionsB;
+                potion_R_Count = SaveManager.instance.activeSave.potionsR;
+            }
+
+            PotionRManager.SetPotionR(potion_R_Count);
+            PotionBManager.SetPotionB(potion_B_Count);
         }
-        
+
+       
+
+
     }
   
     

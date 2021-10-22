@@ -64,14 +64,11 @@ public class PlayerMovement : MonoBehaviour
     private ShootingBullet sB;
     private gameManager GameManager;
     private HealthManager _hM;
-   
+    public GameObject[] players;
     private string sceneName;
     void Start()
     {
         Time.timeScale = 1;
-        /*Scene currentScene = SceneManager.GetActiveScene ();
-        sceneName = currentScene.name;
-        Debug.Log(sceneName);*/
         anim_Small = GetComponentInChildren<Animator>();
         anim_enemy1 = GetComponentInChildren<Animator>();
         anim_enemy2 = GetComponentInChildren<Animator>();
@@ -86,6 +83,18 @@ public class PlayerMovement : MonoBehaviour
         _hM = FindObjectOfType<HealthManager>();
         DontDestroyOnLoad(gameObject);
         mySRE = GetComponentInChildren<SpriteRenderer>();
+        if (MainMenu.LoadedGame = true)
+        {
+            if (SaveManager.instance.hasloaded)
+            {
+                players = GameObject.FindGameObjectsWithTag("Player");
+                if (players.Length > 2)
+                {
+                    Destroy(players[0]);
+                }
+            }
+        }
+        
     }
     
     private void FixedUpdate()

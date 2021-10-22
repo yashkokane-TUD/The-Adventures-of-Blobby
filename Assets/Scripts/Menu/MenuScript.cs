@@ -9,6 +9,9 @@ public class MenuScript : MonoBehaviour
    
     public void PlayGame()
     {
+        HealthManager.PlayerHP = 12;
+        potionCollection.potion_B_Count = 0;
+        potionCollection.potion_R_Count = 0;
         SceneManager.LoadScene("level-1");
     }
 

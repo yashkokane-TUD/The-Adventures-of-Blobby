@@ -24,6 +24,13 @@ public class PotionBManager : MonoBehaviour
         
         theTextB = GetComponent<TMP_Text>();
         SetMaxPotionsB();
+        
+        if (MainMenu.LoadedGame = true)
+        {
+            if (SaveManager.instance.hasloaded)
+                SetPotionB(SaveManager.instance.activeSave.potionsB);
+        }
+        
     }
 
    

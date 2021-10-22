@@ -40,12 +40,7 @@ public class gameManager : MonoBehaviour
         }
     }
     
-    public void RespawnPlayer()
-    {
-        pM.transform.position = CurrentCheckpoint.transform.position;
-        _healthManager.ResetHealth();
-        //SaveManager.instance.Save();
-    }
+    
     private void Start()
     {
         pM = FindObjectOfType<PlayerMovement>();
@@ -59,20 +54,28 @@ public class gameManager : MonoBehaviour
         }
         SaveManager.instance.Load();
         //resPt = player.transform.position;
-        if (SaveManager.instance.hasloaded)
+        if (MainMenu.LoadedGame = true)
         {
-            resPt = SaveManager.instance.activeSave.resPos;
-            SaveManager.instance.transform.position = resPt;
-            lives = SaveManager.instance.activeSave.lives;
+            if (SaveManager.instance.hasloaded)
+            {
+                player.transform.position = SaveManager.instance.activeSave.resPos;
+                lives = SaveManager.instance.activeSave.lives;
+            }
+            else
+            {
+                SaveManager.instance.activeSave.lives = lives;
+            }
         }
-        else
-        {
-            SaveManager.instance.activeSave.lives = lives;
-        }
+        
         
         DontDestroyOnLoad(gameObject);
     }
-
+    public void RespawnPlayer()
+    {
+        pM.transform.position = CurrentCheckpoint.transform.position;
+        _healthManager.ResetHealth();
+        //SaveManager.instance.Save();
+    }
     public void TogglePauseState()
     {
         if (gamePaused)
@@ -118,7 +121,6 @@ public class gameManager : MonoBehaviour
      }
      public void QuitGame()
      {
-         SaveManager.instance.activeSave.resPos = transform.position;
          SaveManager.instance.activeSave.resPos = transform.position;
          SaveManager.instance.activeSave.lives = _lifeManager.LifeCounter;
          SaveManager.instance.activeSave.HP = HealthManager.PlayerHP;
