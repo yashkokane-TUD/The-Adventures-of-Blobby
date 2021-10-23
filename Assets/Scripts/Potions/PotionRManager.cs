@@ -16,13 +16,12 @@ public class PotionRManager : MonoBehaviour
     {
         theTextR = GetComponent<TMP_Text>();
         SetMaxPotionsR();
-        if (MainMenu.LoadedGame = true)
-        {
-            if (SaveManager.instance.hasloaded)
+  
+            if (SaveManager.instance.saveExists)
             {
                SetPotionR(SaveManager.instance.activeSave.potionsR);
             }
-        }
+
         
         
     }

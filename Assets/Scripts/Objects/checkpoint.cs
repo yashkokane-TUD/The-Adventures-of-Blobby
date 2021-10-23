@@ -28,7 +28,7 @@ public class checkpoint : MonoBehaviour
         {
             gM.CurrentCheckpoint = gameObject;
             playerHPatCheck = HealthManager.PlayerHP;
-            Debug.Log(playerHPatCheck);
+            //Debug.Log(playerHPatCheck);
             /*SaveManager.instance.activeSave.resPos = transform.position;
             SaveManager.instance.Save();*/
         }

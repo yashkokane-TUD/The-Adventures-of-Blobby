@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class HealthManager : MonoBehaviour
 {
-    public static int PlayerHP;
+    //public static HealthManager Hmanager;
+    public static int PlayerHP = 12;
     public int healthMax = 100;
     public HealthBar healthbar;
     public bool isDead = false;
@@ -33,16 +34,14 @@ public class HealthManager : MonoBehaviour
         gM = FindObjectOfType<gameManager>();
         pC = FindObjectOfType<potionCollection>();
         Cp = FindObjectOfType<checkpoint>();
-        PlayerHP = 12;
-        healthbar.SetHealth(PlayerHP);
-        if (MainMenu.LoadedGame = true)
+        //PlayerHP = 12;
+        /*if (SaveManager.instance.hasloaded)
         {
-            if (SaveManager.instance.hasloaded)
-            {
-                PlayerHP = SaveManager.instance.activeSave.HP;
-            }
-            healthbar.SetHealth(PlayerHP);
-        }
+            PlayerHP = SaveManager.instance.activeSave.HP;
+            Debug.Log(PlayerHP);
+        }*/
+        healthbar.SetHealth(PlayerHP);
+
         
     }
     

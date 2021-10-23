@@ -5,21 +5,19 @@ using UnityEngine;
 
 public class DestroyBars : MonoBehaviour
 {
-    public SpriteRenderer DestBars;
-
-    public Sprite broken;
+    [SerializeField] private GameObject BrokenDoor;
+    [SerializeField] private GameObject Door;
+    public static bool DoorOff;
 
     private void Start()
     {
-        DestBars = GetComponentInChildren<SpriteRenderer>();
+   
     }
     public void destroyPrison()
     {
+        Door.SetActive(false);
+        BrokenDoor.SetActive(true);
+        DoorOff = true;
 
-        DestBars.sprite = broken;
-   
-       //GameObject destructable = (GameObject) Instantiate(DestBars);
-       //destructable.transform.position = Bars.transform.position;
-     
-   }
+    }
 }

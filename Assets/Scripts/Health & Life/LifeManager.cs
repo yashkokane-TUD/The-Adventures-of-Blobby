@@ -34,12 +34,12 @@ public class LifeManager : MonoBehaviour
         theText.text = LifeCounter.ToString();;
     }
 
-    public void GiveLife()
+    /*public void GiveLife()
     {
 
         LifeCounter++;
         SaveManager.instance.activeSave.lives = LifeCounter;
-    }
+    }*/
 
     public void TakeLife()
     {

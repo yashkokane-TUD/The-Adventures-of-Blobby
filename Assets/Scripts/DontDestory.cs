@@ -5,9 +5,20 @@ using UnityEngine;
 
 public class DontDestory : MonoBehaviour
 {
+    public static DontDestory instance;
     // Start is called before the first frame update
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        if (instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
+        
+        //Load();
     }
 }

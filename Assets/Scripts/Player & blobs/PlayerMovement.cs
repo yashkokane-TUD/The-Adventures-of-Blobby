@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     
     [SerializeField] public bool canDash;
     [SerializeField] public bool Dashing;
-    
+    public static PlayerMovement pMovement;
     public GameObject MapToggle;
     private bool showMap;
     
@@ -66,6 +66,21 @@ public class PlayerMovement : MonoBehaviour
     private HealthManager _hM;
     public GameObject[] players;
     private string sceneName;
+    
+    /*private void Awake()
+    {
+        if (pMovement == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            pMovement = this;
+        }
+        else if (pMovement != this)
+        {
+            Destroy(gameObject);
+        }
+        
+        //Load();
+    }*/
     void Start()
     {
         Time.timeScale = 1;
@@ -81,20 +96,19 @@ public class PlayerMovement : MonoBehaviour
         tM = FindObjectOfType<TransformationManager>();
         sB = FindObjectOfType<ShootingBullet>();
         _hM = FindObjectOfType<HealthManager>();
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
         mySRE = GetComponentInChildren<SpriteRenderer>();
-        if (MainMenu.LoadedGame = true)
+  
+        players = GameObject.FindGameObjectsWithTag("PlayerPrefab");
+        if (players.Length > 1)
         {
-            if (SaveManager.instance.hasloaded)
-            {
-                players = GameObject.FindGameObjectsWithTag("Player");
-                if (players.Length > 2)
-                {
-                    Destroy(players[0]);
-                }
-            }
+            Destroy(players[0]);
         }
-        
+        if (SaveManager.instance.hasloaded)
+        {
+            transform.position = SaveManager.instance.activeSave.resPos;
+            
+        }
     }
     
     private void FixedUpdate()

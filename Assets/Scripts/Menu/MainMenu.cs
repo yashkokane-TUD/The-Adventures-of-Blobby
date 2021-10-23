@@ -13,17 +13,26 @@ public class MainMenu : MonoBehaviour
     public static bool LoadedGame;
     public void PlayGame()
     {
-        SceneManager.LoadScene("Introduction");
+        SceneManager.LoadScene("level-1");
+        if (SaveManager.instance.saveExists)
+        {
+            string dataPath = Application.persistentDataPath;
+            if (File.Exists(dataPath + "/" + SaveManager.instance.activeSave.saveName + ".save"))
+            {
+                File.Delete(dataPath + "/" + SaveManager.instance.activeSave.saveName + ".save");
+            }
+        }
+        
     }
 
     public void LoadGame()
     {
         string dataPath = Application.persistentDataPath;
-        if (System.IO.File.Exists(dataPath + "/" + SaveManager.instance.activeSave.saveName + ".save"))
+        if (File.Exists(dataPath + "/" + SaveManager.instance.activeSave.saveName + ".save"))
         {
             LoadedGame = true;
             LoadButton.SetActive(true);
-            SceneManager.LoadScene("Introduction");
+            SceneManager.LoadScene("level-1");
             /*var serializer = new XmlSerializer(typeof(SaveData));
             var stream = new FileStream(dataPath + "/" + SaveManager.instance.activeSave.saveName + ".save", FileMode.Open);
             SaveManager.instance.activeSave = serializer.Deserialize(stream) as SaveData;
