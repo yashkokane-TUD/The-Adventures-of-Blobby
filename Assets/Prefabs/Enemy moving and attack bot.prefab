@@ -42,8 +42,8 @@ GameObject:
   - component: {fileID: 3241260382269608529}
   - component: {fileID: 3241260382269608531}
   - component: {fileID: 6679552479495876165}
-  - component: {fileID: 6679552479495876162}
   - component: {fileID: 3602702288627648051}
+  - component: {fileID: 8482935108875414815}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -133,20 +133,6 @@ MonoBehaviour:
   _healthManager: {fileID: 0}
   _playerMovement: {fileID: 0}
   HurtValue: 0
---- !u!114 &6679552479495876162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3241260382269608540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cd73dcfcafff354da0be6458821d364, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item1: {fileID: 7546337055866802687, guid: 921715546a851d14887fbd1192473761, type: 3}
-  Epos: {fileID: 0}
 --- !u!114 &3602702288627648051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,15 +145,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b7137008229a8e4196333665c75c7c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemy: {fileID: 3241260382269608540}
+  _enemy: {fileID: 0}
   health: 4
-  anim: {fileID: 6679552480323232070}
-  currentPosition: {fileID: 3241260382269608528}
-  points:
-  - {fileID: 3241260383686750152}
-  - {fileID: 3241260382131114574}
+  anim: {fileID: 0}
+  currentPosition: {fileID: 0}
+  points: []
   pointSelect: 0
   Dash: {fileID: 0}
+--- !u!114 &8482935108875414815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3241260382269608540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b82188d1869b2c4c8bf9b6a0923bcc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items: []
 --- !u!1 &3241260382504725752
 GameObject:
   m_ObjectHideFlags: 0

@@ -78,34 +78,9 @@ public class MovingEnemy : MonoBehaviour
                 Destroy(roof);
                 _SJAbility.SetActive(true);
                 DItems.dropItemOnDeath2();
+                Destroy(gameObject);
             }
         }
     }
-    /*public void playCutScene()
-    {
-        //yield return new WaitForSeconds(6f);
-        /*Debug.Log("end cut");#1#
-        //StartCoroutine(endCutScene());
-        /*Cutscene.enabled = true;
-        MainCam.enabled = false;#1#
-        MainCam.Priority = 8;
-        Cutscene.Priority = 9;
-        anim.Play("buff view");
-        MainCam.Priority = 9;
-        Cutscene.Priority = 8;
-        /*MainCam.enabled = true;
-        Cutscene.enabled = false;#1#
-        Destroy(gameObject); 
-        
-    }
-    /*IEnumerator endCutScene()
-    {
-        
-        Cutscene.enabled = true;
-        MainCam.enabled = false;
-        MainCam.Priority = 8;
-        Cutscene.Priority = 9;
-        anim.Play("buff view");
-    }#1#*/
 
 }

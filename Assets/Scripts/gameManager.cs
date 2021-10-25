@@ -113,12 +113,12 @@ public class gameManager : MonoBehaviour
      }
      public void QuitGame()
      {
-         SaveManager.instance.activeSave.resPos = FindObjectOfType<PlayerMovement>().transform.position;
+         /*SaveManager.instance.activeSave.resPos = FindObjectOfType<PlayerMovement>().transform.position;
          SaveManager.instance.activeSave.lives = _lifeManager.LifeCounter;
          SaveManager.instance.activeSave.HP = HealthManager.PlayerHP;
          SaveManager.instance.activeSave.potionsB = potionCollection.potion_B_Count;
          SaveManager.instance.activeSave.potionsR = potionCollection.potion_R_Count;
-         SaveManager.instance.Save();
+         SaveManager.instance.Save();*/
          //Debug.Log(SaveManager.instance.activeSave.HP);
          SceneManager.LoadScene("Menu_Scene");
      }

@@ -26,7 +26,7 @@ public class potionCollection : MonoBehaviour
         potion_R_Count = 0;
         PotionRManager.SetPotionR(potion_R_Count);
         PotionBManager.SetPotionB(potion_B_Count);*/
-        if (MainMenu.LoadedGame = true)
+        /*if (MainMenu.LoadedGame = true)
         {
             if (SaveManager.instance.hasloaded)
             {
@@ -36,7 +36,7 @@ public class potionCollection : MonoBehaviour
 
             PotionRManager.SetPotionR(potion_R_Count);
             PotionBManager.SetPotionB(potion_B_Count);
-        }
+        }*/
 
        
 

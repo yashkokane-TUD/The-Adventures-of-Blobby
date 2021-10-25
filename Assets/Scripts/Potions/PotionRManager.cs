@@ -17,10 +17,10 @@ public class PotionRManager : MonoBehaviour
         theTextR = GetComponent<TMP_Text>();
         SetMaxPotionsR();
   
-            if (SaveManager.instance.saveExists)
+            /*if (SaveManager.instance.saveExists)
             {
                SetPotionR(SaveManager.instance.activeSave.potionsR);
-            }
+            }*/
 
         
         

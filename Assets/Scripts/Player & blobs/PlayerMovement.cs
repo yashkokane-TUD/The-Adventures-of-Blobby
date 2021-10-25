@@ -104,11 +104,11 @@ public class PlayerMovement : MonoBehaviour
         {
             Destroy(players[0]);
         }
-        if (SaveManager.instance.hasloaded)
+        /*if (SaveManager.instance.hasloaded)
         {
             transform.position = SaveManager.instance.activeSave.resPos;
             
-        }
+        }*/
     }
     
     private void FixedUpdate()
@@ -309,11 +309,9 @@ public class PlayerMovement : MonoBehaviour
                         dashTime = startDashTime;
                         myRB.velocity = Vector2.zero;
                         Dashing = false;
-                        Debug.Log("no dash");
                     }
                     else
                     {
-                        Debug.Log("dash");
                         Dashing = false;
                         dashTime -= Time.deltaTime;
                         if (myRB.velocity.x < 0)

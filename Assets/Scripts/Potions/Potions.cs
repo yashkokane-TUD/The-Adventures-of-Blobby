@@ -20,7 +20,7 @@ public class Potions : MonoBehaviour
         {
             case "PotionRed":
                 potionCollection.UpdateRedCount();
-                //Destroy(gameObject);
+                Destroy(gameObject);
                 break;
             case "PotionBlue":
                 potionCollection.UpdateBlueCount();

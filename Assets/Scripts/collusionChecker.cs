@@ -44,9 +44,9 @@ public class collusionChecker : MonoBehaviour
             Enemy.EnemyHealth();
             Destroy(gameObject);
         }
-        /*if (other.gameObject.tag = "AbilityEnemy")
+        if (other.gameObject.tag == "AbilityEnemy")
         {
-            
-        }*/
+            Destroy(gameObject);
+        }
     }
 }

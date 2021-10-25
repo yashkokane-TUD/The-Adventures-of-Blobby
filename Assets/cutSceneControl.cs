@@ -27,6 +27,10 @@ public class cutSceneControl : MonoBehaviour
             vCam1.SetActive(false);
             vCam2.SetActive(true);
             MyMethod();
+            vCam1.SetActive(true);
+            vCam2.SetActive(false);
+            gameObject.SetActive(false);
+            
         }
     }
 
@@ -37,9 +41,7 @@ public class cutSceneControl : MonoBehaviour
     }
     IEnumerator MyMethod() 
     {
-        yield return new WaitForSeconds(4);
-        vCam1.SetActive(true);
-        vCam2.SetActive(false);
-        gameObject.SetActive(false);
+        yield return new WaitForSeconds(3f);
+        
     }
 }

@@ -24,7 +24,7 @@ public class MovingEnemy2 : MonoBehaviour
     
     private SpriteRenderer mySR;    //Enemy sprite access
  
-    private dropItems DItems;
+    private DropMultipleItems DItems;
     //camera objects
     // Start is called before the first frame update
     void Start()
@@ -32,7 +32,7 @@ public class MovingEnemy2 : MonoBehaviour
         mySR = GetComponentInChildren<SpriteRenderer>();
         currentPosition = points[pointSelect];
         
-        DItems = FindObjectOfType<dropItems>();
+        DItems = FindObjectOfType<DropMultipleItems>();
     }
 
     // Update is called once per frame
@@ -61,24 +61,14 @@ public class MovingEnemy2 : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Player" && Dash.Dashing)
+        if (other.gameObject.tag == "Player" && Dash.Dashing || other.gameObject.tag == "Bullet")
         {
             Debug.Log(health);
             health = health - 1;
     
             if (health == 0)
             {
-                DItems.dropItemOnDeath();
-                Destroy(gameObject);
-            }
-        }
-        else if (other.gameObject.tag == "HeroBullet")
-        {
-            health = health - 1;
-    
-            if (health == 0)
-            {
-                DItems.dropItemOnDeath();
+                DItems.dropItemOnDeath2();
                 Destroy(gameObject);
             }
         }

@@ -32,7 +32,7 @@ public class Breakable_floor : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            if (Dash.Dashing == true)
+            if (Dash.Dashing)
             {
                 smoke.Play();
                 StartCoroutine(Break());
