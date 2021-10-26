@@ -63,10 +63,9 @@ public class TransformationManager : MonoBehaviour
         show = !show;
         if (show)
         {
+            Debug.Log("hit");
             transformWheel.SetActive(true);
-            
             TransformID = 0;
-
         }
         else
         {
